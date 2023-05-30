@@ -57,11 +57,13 @@ operatorButtons.forEach((button) => {
 })
 
 equal.addEventListener('click', () => {
-    const result = operate(Number(firstNumber), operator, Number(secondNumber));
-    visor.textContent = result;
-    firstNumber = result;
-    operator = '';
-    secondNumber = 0;
+    if (visor.textContent === `${Number(firstNumber)} ${operator} ${Number(secondNumber)}`) {
+        const result = operate(Number(firstNumber), operator, Number(secondNumber));
+        visor.textContent += ` =\n${result}`;
+        firstNumber = result;
+        operator = '';
+        secondNumber = 0;
+    }
 })
 
 clear.addEventListener('click', () => {
