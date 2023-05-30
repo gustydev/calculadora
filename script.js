@@ -47,6 +47,7 @@ numberButtons.forEach((button) => {
 function getResult() {
     if (visor.textContent === `${Number(firstNumber)} ${operator} ${Number(secondNumber)}`) {
         if (operator === '/' && Number(secondNumber) === 0) {
+            secondNumber = 0;
             return alert('Impossível!');
         }
         const result = operate(Number(firstNumber), operator, Number(secondNumber));
