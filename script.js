@@ -14,8 +14,8 @@ function divide(a, b) {
     return a / b;
 }
 
-let firstNumber = ''; 
-let secondNumber = '';
+let firstNumber = 0; 
+let secondNumber = 0;
 let operator = '';
 
 function operate(firstNumber, operator, secondNumber) {
@@ -29,6 +29,7 @@ function operate(firstNumber, operator, secondNumber) {
 const numberButtons = document.querySelectorAll('button.number');
 const operatorButtons = document.querySelectorAll('button.operator');
 const visor = document.querySelector('.visor');
+const equal = document.querySelector('button.equal');
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -52,4 +53,12 @@ operatorButtons.forEach((button) => {
             visor.textContent = `${Number(firstNumber)} ${operator}`;
         }
     })
+})
+
+equal.addEventListener('click', () => {
+    const result = operate(Number(firstNumber), operator, Number(secondNumber));
+    visor.textContent = result;
+    firstNumber = result;
+    operator = '';
+    secondNumber = 0;
 })
