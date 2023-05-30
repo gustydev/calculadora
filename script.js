@@ -74,10 +74,11 @@ operatorButtons.forEach((button) => {
 })
 
 equal.addEventListener('click', () => {
-    getResult();
-    operator = '';
+    if (!(secondNumber === 0)) {
+        getResult();
+        operator = '';
     }
-);
+});
 
 clear.addEventListener('click', () => {
     firstNumber = 0;
