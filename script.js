@@ -44,27 +44,36 @@ numberButtons.forEach((button) => {
     })
 })
 
+function getResult() {
+    if (visor.textContent === `${Number(firstNumber)} ${operator} ${Number(secondNumber)}`) {
+        const result = operate(Number(firstNumber), operator, Number(secondNumber));
+        visor.textContent += ` = ${result}`;
+        firstNumber = result;
+        secondNumber = 0;
+    }
+}
+
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (operator === '') {
             if (firstNumber === '') {
                 firstNumber = '0';
             }
-            operator += button.id;
+            operator = button.id;
             visor.textContent = `${Number(firstNumber)} ${operator}`;
+        } else if (!(secondNumber === 0)) {
+            getResult();
+            operator = button.id;
+            visor.textContent = `${Number(firstNumber)} ${operator}`
         }
     })
 })
 
 equal.addEventListener('click', () => {
-    if (visor.textContent === `${Number(firstNumber)} ${operator} ${Number(secondNumber)}`) {
-        const result = operate(Number(firstNumber), operator, Number(secondNumber));
-        visor.textContent += ` =\n${result}`;
-        firstNumber = result;
-        operator = '';
-        secondNumber = 0;
+    getResult();
+    operator = '';
     }
-})
+);
 
 clear.addEventListener('click', () => {
     firstNumber = 0;
