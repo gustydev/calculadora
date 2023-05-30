@@ -46,8 +46,12 @@ numberButtons.forEach((button) => {
 
 function getResult() {
     if (visor.textContent === `${Number(firstNumber)} ${operator} ${Number(secondNumber)}`) {
+        if (Number(secondNumber) === 0) {
+            return alert('Impossível!');
+        }
         const result = operate(Number(firstNumber), operator, Number(secondNumber));
         visor.textContent += ` = ${result}`;
+        operator = '';
         firstNumber = result;
         secondNumber = 0;
     }
@@ -76,7 +80,6 @@ operatorButtons.forEach((button) => {
 equal.addEventListener('click', () => {
     if (!(secondNumber === 0)) {
         getResult();
-        operator = '';
     }
 });
 
