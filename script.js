@@ -27,16 +27,17 @@ function operate(firstNumber, operator, secondNumber) {
 }
 
 const numberButtons = document.querySelectorAll('button.number');
-const operatorButtons = document.querySelectorAll('button.operator')
+const operatorButtons = document.querySelectorAll('button.operator');
+const visor = document.querySelector('.visor');
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (operator === '') {
             firstNumber += button.id;
-            console.log(firstNumber);
+            visor.textContent = `${Number(firstNumber)}`;
         } else {
             secondNumber += button.id;
-            console.log(secondNumber);
+            visor.textContent = `${Number(firstNumber)} ${operator} ${Number(secondNumber)}`;
         }
     })
 })
@@ -44,8 +45,11 @@ numberButtons.forEach((button) => {
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (operator === '') {
+            if (firstNumber === '') {
+                firstNumber = '0';
+            }
             operator += button.id;
-            console.log(operator);
+            visor.textContent = `${Number(firstNumber)} ${operator}`;
         }
     })
 })
