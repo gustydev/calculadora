@@ -55,16 +55,20 @@ function getResult() {
 
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
+        function updateOperator() {
+            operator = button.id;
+            visor.textContent = `${Number(firstNumber)} ${operator}`
+        }
         if (operator === '') {
             if (firstNumber === '') {
                 firstNumber = '0';
             }
-            operator = button.id;
-            visor.textContent = `${Number(firstNumber)} ${operator}`;
+            updateOperator()
         } else if (!(secondNumber === 0)) {
             getResult();
-            operator = button.id;
-            visor.textContent = `${Number(firstNumber)} ${operator}`
+            updateOperator();
+        } else if (secondNumber === 0) {
+            updateOperator();
         }
     })
 })
