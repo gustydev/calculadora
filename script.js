@@ -30,6 +30,7 @@ const numberButtons = document.querySelectorAll('button.number');
 const operatorButtons = document.querySelectorAll('button.operator');
 const visor = document.querySelector('.visor');
 const equal = document.querySelector('button.equal');
+const clear = document.querySelector('button#clear');
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -61,4 +62,11 @@ equal.addEventListener('click', () => {
     firstNumber = result;
     operator = '';
     secondNumber = 0;
+})
+
+clear.addEventListener('click', () => {
+    firstNumber = 0;
+    operator = '';
+    secondNumber = 0;
+    visor.textContent = firstNumber;
 })
