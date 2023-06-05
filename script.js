@@ -37,6 +37,8 @@ const decimal = document.querySelector('button.decimal');
 function updateText() {
     if (!firstNumber) {
         display.textContent = '0';
+    } else if (firstNumber.includes('-')) {
+        display.textContent = `${firstNumber}${operator}${secondNumber}`;
     } else if (!secondNumber) {
         display.textContent = `${Number(firstNumber)}${operator}${secondNumber}`;
     } else {
@@ -112,5 +114,12 @@ deleteButton.addEventListener('click', () => {
     } else if (secondNumber) {
         secondNumber = String(secondNumber).slice(0, -1);
         updateText();
+    }
+})
+
+decimal.addEventListener('click', () => {
+    if (!firstNumber) {
+        firstNumber += '.'
+        display.textContent += '.';
     }
 })
