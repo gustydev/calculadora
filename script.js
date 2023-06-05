@@ -40,20 +40,32 @@ function updateText() {
     } else if (firstNumber.includes('-')) {
         display.textContent = `${firstNumber}${operator}${secondNumber}`;
     } else if (!secondNumber) {
-        display.textContent = `${Number(firstNumber)}${operator}${secondNumber}`;
+        if (firstNumber.includes('.') && !operator) {
+            display.textContent = `${firstNumber}${operator}${secondNumber}`;
+        } else {
+            display.textContent = `${Number(firstNumber)}${operator}${secondNumber}`;
+        }
     } else {
-        display.textContent = `${Number(firstNumber)}${operator}${Number(secondNumber)}`;
+        if (secondNumber.includes('.')) {
+            display.textContent = `${Number(firstNumber)}${operator}${secondNumber}`;
+        } else {
+            display.textContent = `${Number(firstNumber)}${operator}${Number(secondNumber)}`;
+        }
     }
 }
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (!operator) {
-            firstNumber += button.id;
-            updateText();
+            if (!(Number(firstNumber) === 0 && button.id === '0') || firstNumber.includes('.')) {
+                firstNumber += button.id;
+                updateText();
+            }
         } else {
-            secondNumber += button.id;
-            updateText();
+            if (!(Number(secondNumber) === 0 && button.id === '0' && secondNumber.length >= 1) || secondNumber.includes('.')) {
+                secondNumber += button.id;
+                updateText();
+            }
         }
     })
 })
@@ -78,7 +90,7 @@ operatorButtons.forEach((button) => {
             updateText();
         }
         if (!operator) {
-            if (!firstNumber) {
+            if (!firstNumber || firstNumber === '-') {
                 firstNumber = '0';
             }
             updateOperator()
@@ -118,8 +130,17 @@ deleteButton.addEventListener('click', () => {
 })
 
 decimal.addEventListener('click', () => {
-    if (!firstNumber) {
-        firstNumber += '.'
-        display.textContent += '.';
+    if (!operator && !firstNumber.includes('.')) {
+        if (!firstNumber) {
+            firstNumber = '0';
+        }
+        firstNumber += '.';
+        updateText();
+    } else if (operator && !secondNumber.includes('.')) {
+        if (!secondNumber) {
+            secondNumber = '0';
+        }
+        secondNumber += '.';
+        updateText();
     }
 })
