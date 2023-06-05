@@ -14,9 +14,8 @@ function divide(a, b) {
     return Math.round(((a / b) + Number.EPSILON) * 100) / 100;
 }
 
-const operators = ['+', '-', '*', '/'];
-let firstNumber = 0; 
-let secondNumber = 0;
+let firstNumber = ''; 
+let secondNumber = '';
 let operator = '';
 
 function operate(firstNumber, operator, secondNumber) {
@@ -29,43 +28,52 @@ function operate(firstNumber, operator, secondNumber) {
 
 const numberButtons = document.querySelectorAll('button.number');
 const operatorButtons = document.querySelectorAll('button.operator');
-const visor = document.querySelector('.visor');
+const display = document.querySelector('.display');
 const equal = document.querySelector('button.equal');
 const clear = document.querySelector('button#clear');
 const deleteButton = document.querySelector('button#delete');
+const decimal = document.querySelector('button.decimal');
+
+function updateText() {
+    if (!firstNumber) {
+        display.textContent = '0';
+    } else if (!secondNumber) {
+        display.textContent = `${Number(firstNumber)}${operator}${secondNumber}`;
+    } else {
+        display.textContent = `${Number(firstNumber)}${operator}${Number(secondNumber)}`;
+    }
+}
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (operator === '') {
+        if (!operator) {
             firstNumber += button.id;
-            visor.textContent = `${Number(firstNumber)}`;
+            updateText();
         } else {
             secondNumber += button.id;
-            visor.textContent = `${Number(firstNumber)}${operator}${Number(secondNumber)}`;
+            updateText();
         }
     })
 })
 
 function getResult() {
-    if (visor.textContent === `${Number(firstNumber)}${operator}${Number(secondNumber)}`) {
-        if (operator === '/' && Number(secondNumber) === 0) {
-            secondNumber = 0; // Resetting so message below doesn't appear twice
-            visor.textContent = `${Number(firstNumber)}${operator}`
-            return alert('Impossível dividir por zero!');
-        }
-        const result = operate(Number(firstNumber), operator, Number(secondNumber));
-        visor.textContent += ` = ${result}`;
-        operator = '';
-        firstNumber = result;
-        secondNumber = 0;
+    if (operator === '/' && Number(secondNumber) === 0) {
+        secondNumber = 0; // Resetting so message below doesn't appear twice
+        updateText();
+        return alert('Impossível dividir por zero!');
     }
+    const result = operate(Number(firstNumber), operator, Number(secondNumber));
+    display.textContent += ` = ${result}`;
+    operator = '';
+    firstNumber = String(result);
+    secondNumber = '';
 }
 
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
         function updateOperator() {
             operator = button.id;
-            visor.textContent = `${Number(firstNumber)}${operator}`
+            updateText();
         }
         if (operator === '') {
             if (firstNumber === '') {
@@ -82,31 +90,29 @@ operatorButtons.forEach((button) => {
 })
 
 equal.addEventListener('click', () => {
-    if (!(secondNumber === 0)) {
+    if (!(!secondNumber)) {
         getResult();
     }
 });
 
 clear.addEventListener('click', () => {
-    firstNumber = 0;
+    firstNumber = '';
     operator = '';
-    secondNumber = 0;
-    visor.textContent = firstNumber;
+    secondNumber = '';
+    updateText();
 })
 
 deleteButton.addEventListener('click', () => {
-    if (visor.textContent.includes('=') || !( (/[+-/*]/.test(visor.textContent)) )) {
+    if (display.textContent.includes('=') || (!operator)) {
         firstNumber = String(firstNumber).slice(0, -1);
-        visor.textContent = `${Number(firstNumber)}`;
-    } else if ((/[+-/*]/.test(visor.textContent)) && (Number(secondNumber) === 0)) {
+        updateText();
+    } else if ((operator) && (!secondNumber)) {
         operator = '';
-        visor.textContent = visor.textContent.slice(0,-1);
-    } else if (secondNumber.length > 0) {
+        updateText();
+    } else if (secondNumber) {
         secondNumber = String(secondNumber).slice(0, -1);
-        if (Number(secondNumber) === 0) {
-            visor.textContent = `${Number(firstNumber)}${operator}`
-        } else {
-            visor.textContent = `${Number(firstNumber)}${operator}${Number(secondNumber)}`
-        }
+        updateText();
     }
 })
+
+// TO DO: desbagunçar esse código pq puta q pariu
