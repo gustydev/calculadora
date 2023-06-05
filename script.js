@@ -155,7 +155,6 @@ decimal.addEventListener('click', () => {
 const buttons = document.querySelectorAll('button');
 
 document.addEventListener('keydown', (e) => {
-    console.log(e.key);
     buttons.forEach((button) => {
         if (button.id === e.key) {
             button.click();
