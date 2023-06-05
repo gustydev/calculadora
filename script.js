@@ -38,18 +38,18 @@ function updateText() {
     if (!firstNumber) {
         display.textContent = '0';
     } else if (firstNumber.includes('-')) {
-        display.textContent = `${firstNumber}${operator}${secondNumber}`;
+        display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
     } else if (!secondNumber) {
         if (firstNumber.includes('.') && !operator) {
-            display.textContent = `${firstNumber}${operator}${secondNumber}`;
+            display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         } else {
-            display.textContent = `${Number(firstNumber)}${operator}${secondNumber}`;
+            display.textContent = `${Number(firstNumber)} ${operator} ${secondNumber}`;
         }
     } else {
         if (secondNumber.includes('.')) {
-            display.textContent = `${Number(firstNumber)}${operator}${secondNumber}`;
+            display.textContent = `${Number(firstNumber)} ${operator} ${secondNumber}`;
         } else {
-            display.textContent = `${Number(firstNumber)}${operator}${Number(secondNumber)}`;
+            display.textContent = `${Number(firstNumber)} ${operator} ${Number(secondNumber)}`;
         }
     }
 }
