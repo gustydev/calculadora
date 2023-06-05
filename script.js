@@ -150,3 +150,19 @@ decimal.addEventListener('click', () => {
         updateText();
     }
 })
+
+// Keyboard support
+const buttons = document.querySelectorAll('button');
+
+document.addEventListener('keydown', (e) => {
+    console.log(e.key);
+    buttons.forEach((button) => {
+        if (button.id === e.key) {
+            button.click();
+        } else if (e.key === 'Backspace' && button.id === 'delete') {
+            button.click();
+        } else if (e.key === 'Enter' && button.id === '=') {
+            button.click();
+        }
+    })
+})
