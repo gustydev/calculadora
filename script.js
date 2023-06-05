@@ -90,7 +90,7 @@ operatorButtons.forEach((button) => {
             updateText();
         }
         if (!operator) {
-            if (!firstNumber || firstNumber === '-') {
+            if (!firstNumber || firstNumber === '-' || firstNumber === '-.') {
                 firstNumber = '0';
             }
             updateOperator()
@@ -105,6 +105,10 @@ operatorButtons.forEach((button) => {
 
 equal.addEventListener('click', () => {
     if (secondNumber) {
+        if (secondNumber.slice(-1) === '.') {
+            secondNumber = secondNumber.slice(0, -1);
+            updateText();
+        }
         getResult();
     }
 });
@@ -133,6 +137,8 @@ decimal.addEventListener('click', () => {
     if (!operator && !firstNumber.includes('.')) {
         if (!firstNumber) {
             firstNumber = '0';
+        } else if (firstNumber === '-') {
+            firstNumber = '-0'
         }
         firstNumber += '.';
         updateText();
