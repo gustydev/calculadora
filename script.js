@@ -58,7 +58,7 @@ numberButtons.forEach((button) => {
 
 function getResult() {
     if (operator === '/' && Number(secondNumber) === 0) {
-        secondNumber = 0; // Resetting so message below doesn't appear twice
+        secondNumber = ''; // Resetting so message below doesn't appear twice
         updateText();
         return alert('Impossível dividir por zero!');
     }
@@ -75,22 +75,22 @@ operatorButtons.forEach((button) => {
             operator = button.id;
             updateText();
         }
-        if (operator === '') {
-            if (firstNumber === '') {
+        if (!operator) {
+            if (!firstNumber) {
                 firstNumber = '0';
             }
             updateOperator()
-        } else if (!(secondNumber === 0)) {
+        } else if (secondNumber) {
             getResult();
             updateOperator();
-        } else if ((secondNumber === 0)) {
+        } else if (!secondNumber) {
             updateOperator();
         }
     })
 })
 
 equal.addEventListener('click', () => {
-    if (!(!secondNumber)) {
+    if (secondNumber) {
         getResult();
     }
 });
@@ -114,5 +114,3 @@ deleteButton.addEventListener('click', () => {
         updateText();
     }
 })
-
-// TO DO: desbagunçar esse código pq puta q pariu
