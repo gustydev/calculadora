@@ -57,12 +57,12 @@ function updateText() {
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (!operator) {
-            if (!(Number(firstNumber) === 0 && button.id === '0') || firstNumber.includes('.')) {
+            if ((!(Number(firstNumber) === 0 && button.id === '0') || firstNumber.includes('.')) && firstNumber.length < 18) {
                 firstNumber += button.id;
                 updateText();
             }
         } else {
-            if (!(Number(secondNumber) === 0 && button.id === '0' && secondNumber.length >= 1) || secondNumber.includes('.')) {
+            if ((!(Number(secondNumber) === 0 && button.id === '0' && secondNumber.length >= 1) || secondNumber.includes('.')) && secondNumber.length < 18) {
                 secondNumber += button.id;
                 updateText();
             }
