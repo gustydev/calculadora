@@ -4,31 +4,60 @@
 
 body {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 95vh;
     justify-content: center;
 }
 
 .main {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: rgb(77, 172, 201);
-    width: 125px;
-    height: 125px;
+    justify-content: space-evenly;
+    background-color: rgb(3, 0, 46);
+    padding: 10px;
+    width: 400px;
+    height: 600px;
 }
 
 .buttons {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    gap: 1px;
+    gap: 4px;
+    width: 100%;
+    height: 80%;
 }
 
 .button {
-    border: 0;
+    border-color: white;
     background-color: black;
     color: white;
+    padding: 0;
+    flex: 1;
+    font-size: 24px;
 }
 
+.row, .top-row {
+    display: flex;
+    gap: 4px;
+    width: 80%;
+    height: 80%;
+    justify-content: space-between;
+}
+
+.display {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    padding: 15px 10px;
+    width: 300px;
+}
+
+.top-row {
+    margin-bottom: 15px;
+}
