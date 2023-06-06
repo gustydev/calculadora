@@ -7,10 +7,11 @@ body {
     flex-direction: column;
     align-items: center;
     height: 95vh;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .main {
+    justify-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -90,4 +91,26 @@ body {
 
 .equal:active {
     background-color: #5eccff;
+}
+
+.footer {
+    margin-top: 48px;
+    display: flex;
+    gap: 4px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #0078af;
+}
+
+.title {
+    font-size: 48px;
+    color: black;
+    text-shadow: #0078af 1px 2px 3px;
+    margin-top: 20px;
 }
