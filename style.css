@@ -1,0 +1,34 @@
+* {
+    font-family: monospace;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(77, 172, 201);
+    width: 125px;
+    height: 125px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.button {
+    border: 0;
+    background-color: black;
+    color: white;
+}
+
