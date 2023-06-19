@@ -74,7 +74,7 @@ function getResult() {
     if (operator === '/' && Number(secondNumber) === 0) {
         secondNumber = ''; // Resetting so message below doesn't appear twice
         updateText();
-        return alert('Impossível dividir por zero!');
+        return alert("You can't divide by zero! That's illegal!");
     }
     const result = operate(Number(firstNumber), operator, Number(secondNumber));
     display.textContent += ` = ${result}`;
