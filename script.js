@@ -1,17 +1,17 @@
 function add(a, b) {
-    return Math.round(((a + b) + Number.EPSILON) * 100) / 100;;
+    return Math.round(((a + b) + Number.EPSILON) * 100000) / 100000;;
 }
 
 function subtract(a, b) {
-    return Math.round(((a - b) + Number.EPSILON) * 100) / 100;;
+    return Math.round(((a - b) + Number.EPSILON) * 100000) / 100000;;
 }
 
 function multiply(a,b) {
-    return Math.round(((a * b) + Number.EPSILON) * 100) / 100;
+    return Math.round(((a * b) + Number.EPSILON) * 100000) / 100000;
 }
 
 function divide(a, b) {
-    return Math.round(((a / b) + Number.EPSILON) * 100) / 100;
+    return Math.round(((a / b) + Number.EPSILON) * 100000) / 100000;
 }
 
 let firstNumber = ''; 
