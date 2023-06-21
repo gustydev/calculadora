@@ -33,23 +33,26 @@ const equal = document.querySelector('button.equal');
 const clear = document.querySelector('button#clear');
 const deleteButton = document.querySelector('button#delete');
 const decimal = document.querySelector('button.decimal');
+const current = document.querySelector('.current');
+const previous = document.querySelector('.previous');
 
 function updateText() {
     if (!firstNumber) {
-        display.textContent = '0';
+        previous.textContent = '';
+        current.textContent = '0';
     } else if (firstNumber.includes('-')) {
-        display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+        current.textContent = `${firstNumber} ${operator} ${secondNumber}`;
     } else if (!secondNumber) {
         if (firstNumber.includes('.') && !operator) {
-            display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+            current.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         } else {
-            display.textContent = `${Number(firstNumber)} ${operator} ${secondNumber}`;
+            current.textContent = `${Number(firstNumber)} ${operator} ${secondNumber}`;
         }
     } else {
         if (secondNumber.includes('.')) {
-            display.textContent = `${Number(firstNumber)} ${operator} ${secondNumber}`;
+            current.textContent = `${Number(firstNumber)} ${operator} ${secondNumber}`;
         } else {
-            display.textContent = `${Number(firstNumber)} ${operator} ${Number(secondNumber)}`;
+            current.textContent = `${Number(firstNumber)} ${operator} ${Number(secondNumber)}`;
         }
     }
 }
@@ -77,7 +80,8 @@ function getResult() {
         return alert("You can't divide by zero! That's illegal!");
     }
     const result = operate(Number(firstNumber), operator, Number(secondNumber));
-    display.textContent += ` = ${result}`;
+    previous.textContent = `${Number(firstNumber)}${operator}${Number(secondNumber)}=`;
+    current.textContent = `${result}`
     operator = '';
     firstNumber = String(result);
     secondNumber = '';
@@ -121,7 +125,7 @@ clear.addEventListener('click', () => {
 })
 
 deleteButton.addEventListener('click', () => {
-    if (display.textContent.includes('=') || (!operator)) {
+    if (current.textContent.includes('=') || (!operator)) {
         firstNumber = String(firstNumber).slice(0, -1);
         updateText();
     } else if ((operator) && (!secondNumber)) {

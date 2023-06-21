@@ -62,8 +62,8 @@ body {
 
 .display {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
     text-align:right;
     background-color: white;
     border: 2px groove #07b0ff;
@@ -71,8 +71,15 @@ body {
     padding: 15px 10px;
     width: 75%;
     min-height: 10%;
-    font-size: 22px;
     word-break: break-all;
+}
+
+.previous {
+    font-size: 16px;
+}
+
+.current {
+    font-size: 22px;
 }
 
 .top-row {
