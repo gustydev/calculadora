@@ -161,6 +161,7 @@ const buttons = document.querySelectorAll('button');
 document.addEventListener('keydown', (e) => {
     buttons.forEach((button) => {
         if (button.id === e.key) {
+            e.preventDefault();
             button.click();
         } else if (e.key === 'Backspace' && button.id === 'delete') {
             button.click();
